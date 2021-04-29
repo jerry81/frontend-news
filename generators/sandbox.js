@@ -8,7 +8,7 @@ const x = hello()
 x.next() // runs first yield
 x.next() // runs second yield
 
-console.log(`\nexample2\n`)
+console.log(`\nexample 2\n`)
 
 const ex2 = hello()
 for (let _ of ex2) {
@@ -20,7 +20,7 @@ for (let _ of hello()) {
     console.log('iterated')
 }
 
-console.log('\nexample3\n')
+console.log('\nexample 3\n')
 
 function randInt() {
     return Math.round(Math.random() * 100)
@@ -34,4 +34,16 @@ function *twentyYields() {
 
 for (let r of twentyYields()) {
     console.log('r is ', r)
+}
+
+console.log('\nexample 4\n')
+
+function *withArgs() {
+    for (a of arguments) {
+        yield a 
+    }
+}
+
+for (a of withArgs('a', 'b', 'c')) {
+    console.log('a is ', a)
 }

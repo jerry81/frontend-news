@@ -12,3 +12,10 @@ function *functionName() {
 usage:
 const x = functionName()
 x.next()
+
+iterators from generators must be iterated with for of ... not for in
+
+### for in vs for of 
+
+for in iterates through properties of object
+for of (new to es6) loops through iterable
