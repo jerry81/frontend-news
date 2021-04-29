@@ -2,6 +2,7 @@ console.log(`\nexample 1\n`)
 function *hello() {
     yield console.log('first yield')
     yield console.log('second yield')
+    return // causes done to become true
 }
 
 const x = hello()
@@ -36,6 +37,9 @@ for (let r of twentyYields()) {
     console.log('r is ', r)
 }
 
+const usingNext = twentyYields()
+let {value, done} = usingNext.next()
+console.log(`value: ${value}, done: ${done}`)
 console.log('\nexample 4\n')
 
 function *withArgs() {
