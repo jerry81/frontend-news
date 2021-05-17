@@ -12,8 +12,7 @@ export default function FunctionalComponent(props) {
   const [ld, setLd] = useState(l.filter(_ => true));
   const [searchStr, setSearchStr] = useState("5");
   const searchStrChanged = input => {
-    
-    debounce(setSearchStr, 300)(input.target.value);
+    setSearchStr(input.target.value);
     console.log("searchStr is now ", searchStr);
   };
   useEffect(() => {
@@ -22,7 +21,8 @@ export default function FunctionalComponent(props) {
       console.log("i to string", i.toString());
       return i.toString().includes(searchStr.toString());
     });
-    setLd(filtered)
+    
+    debounce(setLd, 300)(filtered)
     console.log("filtered is now ", filtered)
   }, [searchStr, l]);
   const renderList = () => {
