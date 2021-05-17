@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { debounce } from 'lodash' 
 
 function getRand() {
   return Math.round(Math.random() * 1000);
@@ -11,7 +12,8 @@ export default function FunctionalComponent(props) {
   const [ld, setLd] = useState(l.filter(_ => true));
   const [searchStr, setSearchStr] = useState("5");
   const searchStrChanged = input => {
-    setSearchStr(input.target.value);
+    
+    debounce(setSearchStr, 300)(input.target.value);
     console.log("searchStr is now ", searchStr);
   };
   useEffect(() => {
