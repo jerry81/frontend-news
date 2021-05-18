@@ -18,26 +18,17 @@ export default function FunctionalComponent(props) {
 
   const db = useMemo(
     () => { 
-        console.log('hello') 
         return debounce(setLd, 300)
     },
     []    
   )
-/*   const debouncedChangeHandler = useMemo(
-    (list) => debounce(setLd, 300)(list)
-  , []); */
   useEffect(() => {
     const filtered = l.filter(i => {
-      console.log("searchStr is ", searchStr);
-      console.log("i to string", i.toString());
       return i.toString().includes(searchStr.toString());
     });
    
     // debounce(setLd, 300)(filtered) // problem with this is that this is created each time component re-rendered
     db(filtered)
-    // console.log('deb', debouncedChangeHandler)
-    // debouncedChangeHandler(filtered)
-    console.log("filtered is now ", filtered)
   }, [searchStr, l, db]);
   const renderList = () => {
     return ld.map((i, idx) => <li key={idx}>{i}</li>);
