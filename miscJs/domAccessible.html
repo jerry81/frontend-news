@@ -12,8 +12,8 @@
         console.debug("inside init");
         const loaded = document.querySelector("#subroot");
         loaded.innerHTML = "subroot loaded";
-        console.dir('loaded', loaded)
-        console.dir('loaded ', loaded.textContext)  
+        console.dir(loaded)
+        console.dir(loaded.textContext)  
         loaded.insertAdjacentText('beforeend', 'prefix added with insertAdjacentText')
     } 
       document.addEventListener("DOMContentLoaded", init);
