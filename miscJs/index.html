@@ -1,19 +1,21 @@
 <html>
-    <body>
-        <div style="height: 5000px; background:black; color: greenyellow">
-            <button onclick="handleClick()">Scroll to 1000</button> <!-- () needed -->
-        </div>
-    </body>
-    <script>
-        function handleClick() {
-            console.log('i am in')
-          window.scrollTo({
-              top: 1000,
-              behavior:"smooth"
-          })    
-        }
-        setTimeout(function() {
-            alert('anon function has run after 1 s')
-        }, 1000) //anoymous function
-    </script>
+  <body>
+    <div style="height: 5000px; background:black; color: greenyellow">
+      <button onclick="handleClick()">Scroll to 1000</button>
+      <!-- () needed -->
+    </div>
+  </body>
+  <script>
+    function handleClick() {
+      console.log("i am in");
+      window.scrollTo({
+        top: 1000,
+        behavior: "smooth"
+      });
+    }
+    setTimeout(function() {
+      alert("anon function has run after 1 s");
+    }, 1000); //anoymous function
+  </script>
+  <script src="./hoisting.js"></script>
 </html>
