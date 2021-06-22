@@ -12,4 +12,7 @@ const asObj = function () {
 
 function withDecl() {
     console.log('i am in withDecl')
+    console.debug('var test ', notHoisted)
 }
+
+let notHoisted = 'notHoisted'
