@@ -15,8 +15,14 @@
         console.dir(loaded)
         console.dir(loaded.textContext)  
         loaded.insertAdjacentText('beforeend', 'prefix added with insertAdjacentText')
+        
+        // querySelector vs querySelectorAll
         console.debug('this should return one item', document.querySelector('div'))
         console.debug('this should return multiple item', document.querySelectorAll('div'))
+        
+        // example of searching within element
+        const root = document.querySelector('#root')
+        console.debug('should only be one item', root.querySelectorAll('div'))
     } 
       document.addEventListener("DOMContentLoaded", init);
     </script>
