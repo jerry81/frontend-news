@@ -23,6 +23,13 @@
         // example of searching within element
         const root = document.querySelector('#root')
         console.debug('should only be one item', root.querySelectorAll('div'))
+
+        // example of creating and inserting element 
+        const subroot = document.querySelector('#subroot')
+        const h2 = document.createElement('h2')
+        h2.innerText = 'i am created'
+        subroot.insertAdjacentElement('beforebegin', h2)
+        setTimeout(() => h2.innerText = 'i have been inserted', 1000)
     } 
       document.addEventListener("DOMContentLoaded", init);
     </script>
