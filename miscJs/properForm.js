@@ -1,4 +1,6 @@
-const proper = document.querySelector('#proper')
-proper.addEventListener('submit', function(e) {
-  console.log('submitted with event ', e)
-})
+const proper = document.querySelector("#proper");
+proper.addEventListener("submit", function(e) {
+  // typically this will redirect
+  e.preventDefault();
+  console.dir(e.currentTarget);
+});
