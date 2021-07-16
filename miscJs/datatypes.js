@@ -38,7 +38,7 @@ el.innerHTML = JSON.stringify(obj)
 
 const cbrR = document.querySelector('#cbrR')
 const cbvR = document.querySelector('#cbvR')
-
+const cbrR2 = document.querySelector('#cbrR2')
 const o1 = {
     a: 'a1'
 }
@@ -47,3 +47,9 @@ const o2 = o1
 o2.a = 'a2'
 
 cbrR.innerHTML = `objects copy by ref: result is o1 ${JSON.stringify(o1)} and o2 ${JSON.stringify(o2)}`
+
+const a1 = [1]
+const a2 = a1
+a2.push(2)
+
+cbrR2.innerHTML = `arrays copy by ref: result is a1 ${a1} and a2 ${a2}`
