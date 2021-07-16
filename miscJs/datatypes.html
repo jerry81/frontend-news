@@ -9,13 +9,33 @@
         freeze obj
       </button>
       <section id="workarea2">
-        let a = {}
-        let b = {}
-        a == b <span id="double"></span>
-        a === b <span id="triple"></span>
-        after a = b, 
-        a == b <span id="doublea"></span>
-        a === b <span id="triplea"></span>
+        <pre>
+          <code>
+            let a = {}
+            let b = {} 
+            a == b
+            <span id="double"></span>
+            a === b
+            <span id="triple"></span>
+            after a = b, 
+            a == b
+            <span id="doublea"></span>
+            a === b
+            <span id="triplea"></span>
+          </code>
+        </pre>
+      </section>
+      <section id="w3">
+        Copy by reference examples
+        <br />
+        <pre>
+          <code>
+            const o1 = { a: 'a1' } 
+            const o2 = o1 
+            o2.a = 'a2'
+            <span id="cbrR"></span>
+          </code>
+        </pre>
       </section>
     </div>
   </body>

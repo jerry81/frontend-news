@@ -35,3 +35,15 @@ function freeze() {
 
 el.innerHTML = JSON.stringify(obj)
 
+
+const cbrR = document.querySelector('#cbrR')
+const cbvR = document.querySelector('#cbvR')
+
+const o1 = {
+    a: 'a1'
+}
+
+const o2 = o1
+o2.a = 'a2'
+
+cbrR.innerHTML = `objects copy by ref: result is o1 ${JSON.stringify(o1)} and o2 ${JSON.stringify(o2)}`
