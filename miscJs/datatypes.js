@@ -53,3 +53,9 @@ const a2 = a1
 a2.push(2)
 
 cbrR2.innerHTML = `arrays copy by ref: result is a1 ${a1} and a2 ${a2}`
+
+let n1 = 1
+let n2 = n1
+++n2
+
+cbvR.innerHTML = `numbers copy by val: result is n1 ${n1} and n2 ${n2}`
