@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <div style="height: 5000px; background:black; color: greenyellow">
+      flatten array with reducer
+      <pre>
+        <code>
+          const original = [['a','b'], ['c','d']]
+          function reducer(acc, cur) {
+            acc = [...acc, ...cur]
+            return acc
+          }
+          const reduced = original.reduce(reducer, [])
+          console.log('reduced', reduced)
+        </code>
+      </pre>
+    </div>
+  </body>
+  <script src="./reducerFlatten.js"></script>
+</html>
