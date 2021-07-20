@@ -15,6 +15,22 @@
           console.log('immediately after')
         </code>
       </pre>
+      <hr/>
+      Promise all
+      <pre>
+        <code>
+          const pr2 = new Promise((res) => {
+            setTimeout(() => {
+              console.log('after 1 second, pr2')
+              res()
+            })
+          })
+          Promise.all([pr, pr]).then(() => {
+            console.log('all promises completed')
+          })
+          console.log('immediately after promise all')
+        </code>
+      </pre>
     </div>
   </body>
   <script src="./promise.js"></script>
