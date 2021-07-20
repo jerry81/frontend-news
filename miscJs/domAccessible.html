@@ -60,13 +60,14 @@
         } catch {
           console.error("this doesnt work because fragments arent elements");
         }
-        document.body.appendChild(frag)
+        document.body.appendChild(frag);
       }
       document.addEventListener("DOMContentLoaded", init);
     </script>
   </head>
   <body>
     <div id="root">
+      <a href="./index.html">back home</a>
       root
       <div id="subroot">subroot</div>
       <div id="contextual">
