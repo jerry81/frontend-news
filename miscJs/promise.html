@@ -15,7 +15,7 @@
           console.log('immediately after')
         </code>
       </pre>
-      <hr/>
+      <hr />
       Promise all
       <pre>
         <code>
@@ -25,12 +25,22 @@
               res()
             })
           })
-          Promise.all([pr, pr]).then(() => {
+          Promise.all([pr, pr2]).then(() => {
             console.log('all promises completed')
           })
           console.log('immediately after promise all')
         </code>
       </pre>
+      <hr />
+      Promise race
+      <pre>
+          <code>
+            Promise.race([pr, pr2]).then(() => {
+              console.log('first completed')
+            })
+            console.log('immediately after promise race')
+          </code>
+        </pre>
     </div>
   </body>
   <script src="./promise.js"></script>

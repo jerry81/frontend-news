@@ -15,7 +15,12 @@ const pr2 = new Promise(res => {
     res();
   });
 });
-Promise.all([pr, pr]).then(() => {
+Promise.all([pr, pr2]).then(() => {
   console.log("all promises completed");
 });
 console.log("immediately after promise all");
+
+Promise.race([pr, pr2]).then(() => {
+  console.log("first completed");
+});
+console.log("immediately after promise race");
