@@ -1,11 +1,23 @@
 <html>
+  <style>
+    div a {
+      margin: 15px;
+      display: block;
+      color: lightblue;
+    }
+    div a:visited {
+      margin: 15px;
+      display: block;
+      color: lightpink;
+    }
+  </style>
   <body>
     <div style="height: 5000px; background:black; color: greenyellow">
       <button onclick="handleClick()">Scroll to 1000</button>
       <button onclick="arrowFunctionTest()">arrow funcion experiment</button>
       <button onclick="cgTests()">test console groups</button>
       <button onclick="passByExps()">test pass by in js</button>
-      <br>
+      <br />
       <button onclick="incClosure()">incClosure</button>
       <p id="closure" style="height: 500px; background: brown">empty</p>
       <a href="./arrayUnpack.html">array unpacking</a>
