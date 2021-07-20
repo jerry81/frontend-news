@@ -13,3 +13,18 @@ wait(5000).then(() => {
   await wait(2000);
   console.log("this is with async await");
 })()
+
+
+async function waitError(t) {
+  return new Promise((_, rej) => {
+    setTimeout(rej, t)
+  })
+}
+
+async function testAwaitErr() {
+  await waitError(1000).catch(() => {
+    console.error('error occured')
+  })
+}
+
+testAwaitErr()
