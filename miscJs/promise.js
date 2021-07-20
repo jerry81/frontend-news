@@ -24,3 +24,18 @@ Promise.race([pr, pr2]).then(() => {
   console.log("first completed");
 });
 console.log("immediately after promise race");
+
+const pr3 = new Promise((_, rej) => {
+  console.log("will reject in 3 s");
+  setTimeout(() => {
+    rej();
+  }, 3000);
+});
+Promise.all([pr, pr2, pr3])
+  .then(() => {
+    console.log("all completed");
+  })
+  .catch(() => {
+    console.error("promise all failed");
+  });
+Promise.allSettled([pr, pr2, pr3]).then(() => {console.log("all have settled, despite failing")});
