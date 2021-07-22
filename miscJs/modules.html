@@ -24,7 +24,12 @@
       </header>
       <main>
         <pre><code>
-          const tobeExported = 'export me'
+            import { hello } from './modules/util'
+
+            const tobeExported = "export me";
+            console.log('its working', tobeExported)
+            
+            hello()
         </code></pre>
       </main>
     </div>
