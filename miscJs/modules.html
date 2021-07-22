@@ -1,0 +1,33 @@
+<html>
+  <style>
+    div a {
+      margin: 15px;
+      display: block;
+      color: lightblue;
+    }
+    div a:visited {
+      margin: 15px;
+      display: block;
+      color: lightpink;
+    }
+    header {
+      padding: 15px;
+    }
+  </style>
+  <body>
+    <div style="height: 5000px; background:black; color: greenyellow">
+      <header>
+        <nav>
+          <a href="./index.html">back home</a>
+        </nav>
+        <h1>Modules</h1>
+      </header>
+      <main>
+        <pre><code>
+          const tobeExported = 'export me'
+        </code></pre>
+      </main>
+    </div>
+  </body>
+  <script src="./modules.js" type="module"></script>
+</html>
