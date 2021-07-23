@@ -26,24 +26,47 @@
       </nav>
     </header>
     <main>
+      <h2>Figure and figcaption</h2>
       <pre>
         <code>
           Code snippet
           <xmp>
           <figure>
-            <caption>Title of image</caption>
             <img alt="always include alt tag" src="./images/test.png"/>
+            <figcaption>Title of image</figcaption> <!-- use css to, for example, make the caption appear on top of the image -->
           </figure>
         </xmp>
         </code>
       </pre>
-      Result: 
+      Result:
       <figure>
-        <caption>
-          Title of image
-        </caption>
         <img alt="always include alt tag" src="./images/test.png" />
+        <figcaption>
+          Title of image
+        </figcaption>
       </figure>
+      <hr />
+      <h2>Picture and source</h2>
+      <pre>
+          <code>
+            Code snippet 
+            <xmp>
+                <picture>
+                    <source srcset="./images/test.png"
+                            media="(min-width: 800px)"> <!-- like an inline media query -->
+                    <img src="./images/Walking-your-dog-aggressive-Chihuahua-1.jpeg" alt="" />
+                </picture>
+          </xmp>
+          </code>
+        </pre>
+      Result (resize parent window to be &lt; or &gt; 1000px to see effect):
+      <picture>
+        <source srcset="./images/test.png" media="(max-width: 1000px)" />
+        <img
+          src="./images/Walking-your-dog-aggressive-Chihuahua-1.jpeg"
+          alt=""
+        />
+      </picture>
     </main>
   </body>
   <script></script>
