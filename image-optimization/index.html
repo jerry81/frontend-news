@@ -5,15 +5,18 @@
       background: black;
       color: greenyellow;
     }
-    div a {
+    a {
       margin: 15px;
       display: block;
       color: lightblue;
     }
-    div a:visited {
+    a:visited {
       margin: 15px;
       display: block;
       color: lightpink;
+    }
+    svg#Layer_1 {
+      stroke: lightyellow;
     }
   </style>
   <body>
@@ -54,7 +57,7 @@
                 <picture>
                     <source srcset="./images/test.png"
                             media="(min-width: 800px)"> <!-- like an inline media query -->
-                    <img src="./images/Walking-your-dog-aggressive-Chihuahua-1.jpeg" alt="" />
+                    <img src="./images/Walking-your-dog-aggressive-Chihuahua-1.jpeg" alt="chi" />
                 </picture>
           </xmp>
           </code>
@@ -67,6 +70,27 @@
           alt=""
         />
       </picture>
+      <hr />
+      <h2>SVG</h2>
+      <a
+        href="https://www.creativebloq.com/news/6-reasons-why-you-should-be-using-svg"
+        >When to use SVG</a
+      >
+      <pre>
+          <code>
+            SVG control style - Code snippet 
+            <xmp>
+              <img src="./images/Flake-06.svg" alt="svg image" />
+              <img src="./images/Flake-06pink.svg" alt="svg image" />
+            </xmp>
+          </code>
+      </pre>
+      Result: - note color changed by editing svg file directly
+      <img src="./images/Flake-06.svg" alt="svg image" />
+      <img src="./images/Flake-06pink.svg" alt="svg image" />
+      <hr />
+      <h2>The most modern image format</h2>
+      <a href="https://developers.google.com/speed/webp">details on webp</a>
     </main>
   </body>
   <script></script>
