@@ -311,8 +311,7 @@ function solution3(S) {
       for (let i = 0; i < loc.length; i++) {
         let curFile = loc[i]
         let index = (i+1).toString()
-        let newIndex = index
-        console.log('index is ', index)
+        let newIndex = padZeroes(loc.length, index)
 
         curFile.name = `${curFile.loc}${newIndex}.${curFile.ext}`
       }
@@ -322,14 +321,41 @@ function solution3(S) {
     final.push(...loc)
   })
   final.sort(sortByIndex)
+
   console.log('final is ', final)
+  const names = final.map(x => x.name)
+  return names.join(`\n`)
   // write your code in JavaScript (Node.js 8.9.4)
 }
 
 const sortInput1 = `asshole.png, Hamburg, 2012-06-28 12:00:00
-bunghole.jpg, Hamburg, 2021-01-01, 13:00:00
-third.jpg, London, 2020-01-01, 12:00:00
+bunghole.jpg, Hamburg, 2021-01-01 13:00:00
+third.jpg, London, 2020-01-01 12:00:00
 ham4.png, Hamburg, 2012-06-28 12:00:01
-ham5.png, Hamburg, 2012-06-28 12:00:01`
+ham5.png, Hamburg, 2012-06-28 07:00:00
+ham4.png, Hamburg, 2012-06-28 12:01:01
+ham5.png, Hamburg, 2012-06-28 06:10:00
+ham4.png, Hamburg, 2012-06-27 12:00:01
+ham5.png, Hamburg, 2012-05-28 06:00:00
+ham4.png, Hamburg, 2013-06-28 12:00:01
+ham5.png, Hamburg, 2012-03-28 06:00:00
+ham4.png, Hamburg, 2012-11-28 12:00:01
+ham5.png, Hamburg, 2012-12-28 06:00:00`
 
-solution3(sortInput1)
+function padZeroes(arrLen, input) {
+  inputLen = input.toString().length 
+  const zeroesNeeded = arrLen.toString().length - inputLen 
+  console.log('zeroesNeeded', zeroesNeeded)
+  let returned = input.toString()
+  for (let i = 0; i < zeroesNeeded; i++) {
+    returned = `0${returned}`
+  }
+  return returned
+}
+
+console.log('padZeroes(25, 5)', padZeroes(25, 5))
+
+
+console.log('padZeroes(120, 5)', padZeroes(125, 5))
+
+console.log('solution 1 is ', solution3(sortInput1))
