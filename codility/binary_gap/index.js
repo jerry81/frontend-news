@@ -41,18 +41,14 @@ OK
     let started = false
     let longest = 0
     let curLen = 0
-    for (let i in asBinStr) {
+    for (let i = 0; i < asBinStr.length; ++i) {
         const cur = asBinStr[i]
         if (cur == 1) {
-            if (started) {
-                started = false
-                if (curLen > longest) {
-                    longest = curLen
-                }
-                curLen = 0
-            } else {
-                started = true
+            started = true 
+            if (curLen > longest) {
+                longest = curLen
             }
+            curLen = 0
         } else if (cur == 0) {
             if (started) {
                 ++curLen 
