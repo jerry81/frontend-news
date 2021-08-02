@@ -26,8 +26,28 @@ string S consists only of the following characters: "A", "B" and/or "C".
 Copyright 2009–2021 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.
 */
 
+function isEvenPalindrome(S) {
+    if (S.length % 2 != 0) return false
+    const midpoint = S.length / 2
+    const front = S.slice(0, midpoint)
+    const back = S.slice(midpoint, S.length)
+    const backR = reverse(back)
+    return backR == front
+}
+
+function reverse(S) {
+    const arr = S.split('')
+    let reversed = ''
+    for (let i = 0; i < S.length; i++) {
+      reversed = reversed.concat(arr[arr.length-i-1])
+    }
+    return reversed
+}
+
 function solution(S) {
-  let count = 0;
+  if (isEvenPalindrome(S)) {
+      return ''
+  }
   // write your code in JavaScript (Node.js 8.9.4)
   do {
     let splitOnce = S.split("AA");
@@ -54,3 +74,8 @@ Invalid result type, string expected, 'undefined' found
 Perhaps you are missing a 'return'?
 RUNTIME ERROR (tested program terminated with exit code 1)
 */
+
+console.log('reverse(reverse) is ', reverse('reverse'))
+console.log('isEvenPalindrome(ABCCBA)', isEvenPalindrome('ABCCBA'))
+console.log('isEvenPalindrome(ABCACBA)', isEvenPalindrome('ABCACBA'))
+console.log('isEvenPalindrome(ABCABCCBACBA)', isEvenPalindrome('ABCABCCBACBA'))
