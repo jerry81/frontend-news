@@ -92,11 +92,12 @@ function solution(A) {
             ++m[cur]
         }
     }
-    const entries = Object.entries(m);
-    for (let j = 0; j < entries.length; j++) {
-      let [k, v] = entries[j];
+    const values = Object.values(m);
+    const keys = Object.keys(m);
+    for (let j = 0; j < values.length; ++j) {
+      let v = values[j];
       if (v % 2 != 0) {
-        return +k;
+        return keys[j];
       }
     }
 }
