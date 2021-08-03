@@ -74,8 +74,10 @@ function solution(A) {
     let fil = A.filter(x => x != first);
     let newLen = fil.length;
     A = [...fil];
-    if (curLen - newLen < 2) {
-      return first;
+    let diff = curLen - newLen
+    let isDiffEven = diff % 2 == 0
+    if (!isDiffEven) {
+        return first
     }
   }
 }
