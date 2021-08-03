@@ -1,5 +1,7 @@
 /*
-A non-empty array A consisting of N integers is given. The array contains an odd number of elements, and each element of the array can be paired with another element that has the same value, except for one element that is left unpaired.
+A non-empty array A consisting of N integers is given. The array contains an odd number of elements,
+ and each element of the array can be paired with another element that has the same value, 
+ except for one element that is left unpaired.
 
 For example, in array A such that:
 
@@ -14,7 +16,8 @@ Write a function:
 
 function solution(A);
 
-that, given an array A consisting of N integers fulfilling the above conditions, returns the value of the unpaired element.
+that, given an array A consisting of N integers fulfilling the above conditions, 
+returns the value of the unpaired element.
 
 For example, given array A such that:
 
@@ -31,19 +34,38 @@ all but one of the values in A occur an even number of times.
 Copyright 2009–2021 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.
 */
 
-function solution(A) {
-    // write your code in JavaScript (Node.js 8.9.4)
-    while (A.length > 1) {
-        const filtered = A.filter(x => x == A[0]) 
-        if (filtered.length == 1) {
-            return filtered[0]
-        }
-        A = A.filter(x => A[0] != x)
+function solutionF1(A) {
+  // write your code in JavaScript (Node.js 8.9.4)
+  while (A.length > 1) {
+    const filtered = A.filter(x => x == A[0]);
+    if (filtered.length == 1) {
+      return filtered[0];
     }
-    return A[0]
+    A = A.filter(x => A[0] != x);
+  }
+  return A[0];
 }
 
-console.log(solution([9, 3, 9, 3, 9, 7, 9] ))
+function solution(A) {
+  let m = {};
+  for (let i = 0; i < A.length; i++) {
+    let cur = A[i];
+    if (m[cur] != undefined) {
+      m[cur] = true;
+    } else {
+      m[cur] = false;
+    }
+  }
+  const entries = Object.entries(m);
+  for (let j = 0; j < entries.length; j++) {
+    let [k, v] = entries[j];
+    if (!v) {
+      return k;
+    }
+  }
+}
+
+console.log(solution([9, 3, 9, 3, 9, 7, 9]));
 /*
 Compilation successful.
 
