@@ -60,7 +60,7 @@ function solution(A) {
   for (let j = 0; j < entries.length; j++) {
     let [k, v] = entries[j];
     if (!v) {
-      return k;
+      return +k;
     }
   }
 }
