@@ -46,10 +46,10 @@ function solutionF1(A) {
   return A[0];
 }
 
-function solution(A) {
+function solutionF2(A) {
   let m = {};
   for (let i = 0; i < A.length; i++) {
-    let cur = A[i];
+    let cur = +A[i];
     if (m[cur] != undefined) {
       m[cur] = true;
     } else {
@@ -57,10 +57,25 @@ function solution(A) {
     }
   }
   const entries = Object.entries(m);
+  console.log("entries is ", entries);
   for (let j = 0; j < entries.length; j++) {
     let [k, v] = entries[j];
-    if (!v) {
+    console.log("k is , v is ", k, v);
+    if (!!!v) {
       return +k;
+    }
+  }
+}
+
+function solution(A) {
+  while (true) {
+    let first = A[0];
+    let curLen = A.length;
+    let fil = A.filter(x => x != first);
+    let newLen = fil.length;
+    A = [...fil];
+    if (curLen - newLen < 2) {
+      return first;
     }
   }
 }
