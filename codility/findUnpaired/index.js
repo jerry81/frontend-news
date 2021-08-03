@@ -67,7 +67,7 @@ function solutionF2(A) {
   }
 }
 
-function solution(A) {
+function solutionF3(A) {
   while (true) {
     let first = A[0];
     let curLen = A.length;
@@ -80,6 +80,25 @@ function solution(A) {
         return first
     }
   }
+}
+
+function solution(A) {
+    let m = {}
+    for (let i = 0; i < A.length; ++i) {
+        let cur = A[i]
+        if (m[cur] == undefined) {
+            m[cur] = 1
+        } else {
+            ++m[cur]
+        }
+    }
+    const entries = Object.entries(m);
+    for (let j = 0; j < entries.length; j++) {
+      let [k, v] = entries[j];
+      if (v % 2 != 0) {
+        return +k;
+      }
+    }
 }
 
 console.log(solution([9, 3, 9, 3, 9, 7, 9]));
