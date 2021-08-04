@@ -40,7 +40,7 @@ Write an efficient algorithm for the following assumptions:
 N is an integer within the range [2..100,000];
 each element of array A is an integer within the range [−1,000..1,000].
 */
-function solution(A) {
+function solutionGrave(A) {
   const splitPoints = A.length - 1;
   let curPt = Math.floor(splitPoints / 2);
   let first = A.slice(0, curPt);
@@ -54,14 +54,10 @@ function solution(A) {
     first = A.slice(0, curPt);
     second = A.slice(curPt, A.length);
   }
-  console.log('first, second are ', first, second)
   let fs = sum(first);
   let ss = sum(second);
-  console.log('fs', fs)
-  console.log('ss is ', ss)
   while (true) {
     let diff = Math.abs(fs - ss);
-    console.log('diff is ', diff)
     let lastOfFirst = first[first.length - 1];
     let prevFS = fs - lastOfFirst;
     let prevSS = ss + lastOfFirst;
@@ -87,6 +83,24 @@ function solution(A) {
   }
 }
 
+function solution(A) {
+    // because numbers are both positive and negative, every number must be checked
+    let front = A.slice(0, 1)
+    let back = A.slice(1, A.length)
+    let sumF = sum(front)
+    let sumB = sum(back)
+    let minDiff = Math.abs(sumF - sumB)
+    for (let i = 0; i < back.length - 1; i++) {
+        sumF+=back[i]
+        sumB-=back[i]
+        let diff = Math.abs(sumF - sumB)
+        if (diff < minDiff) {
+            minDiff = diff
+        }
+    }
+    return minDiff
+}
+
 function sum(A) {
   return A.reduce((accum, cur) => {
     return accum + cur;
@@ -96,6 +110,7 @@ function sum(A) {
 console.log("sum test ", sum([3, 1, 2, 4, 3]));
 
 console.log("sol ", solution([-1000, 1000]));
+console.log('sol2 ', solution([3, 1, 2, 4, 3]))
 /*
 Example test:   [3, 1, 2, 4, 3]
 Output (stderr):
