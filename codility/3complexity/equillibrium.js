@@ -44,11 +44,24 @@ function solution(A) {
   const splitPoints = A.length - 1;
   let curPt = Math.floor(splitPoints / 2);
   let first = A.slice(0, curPt);
+  if (first.length == 0) {
+    ++curPt;
+    first = A.slice(0, curPt);
+  }
   let second = A.slice(curPt, A.length);
+  if (second.length == 0) {
+    --curPt;
+    first = A.slice(0, curPt);
+    second = A.slice(curPt, A.length);
+  }
+  console.log('first, second are ', first, second)
   let fs = sum(first);
   let ss = sum(second);
+  console.log('fs', fs)
+  console.log('ss is ', ss)
   while (true) {
     let diff = Math.abs(fs - ss);
+    console.log('diff is ', diff)
     let lastOfFirst = first[first.length - 1];
     let prevFS = fs - lastOfFirst;
     let prevSS = ss + lastOfFirst;
@@ -57,12 +70,12 @@ function solution(A) {
     let nextFS = fs + firstOfSecond;
     let nextSS = ss - firstOfSecond;
     let ndiff = Math.abs(nextFS - nextSS);
-    if (pdiff < diff) {
+    if (pdiff < diff && first.length > 1) {
       // move left
       second.unshift(first.pop());
       fs = prevFS;
       ss = prevSS;
-    } else if (ndiff < diff) {
+    } else if (ndiff < diff && second.length > 1) {
       // move right
       first.push(second.shift());
       fs = nextFS;
@@ -82,7 +95,7 @@ function sum(A) {
 
 console.log("sum test ", sum([3, 1, 2, 4, 3]));
 
-console.log("sol ", solution([3, 1, 2, 4, 3]));
+console.log("sol ", solution([-1000, 1000]));
 /*
 Example test:   [3, 1, 2, 4, 3]
 Output (stderr):
