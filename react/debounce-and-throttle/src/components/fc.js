@@ -15,6 +15,9 @@ export default function FunctionalComponent(props) {
     setSearchStr(input.target.value);
     console.log("searchStr is now ", searchStr);
   };
+  function handleClick() {
+    console.log('clicked', this)
+  }
 
   const db = useMemo(
     () => { 
@@ -31,8 +34,16 @@ export default function FunctionalComponent(props) {
     db(filtered)
   }, [searchStr, l, db]);
   const renderList = () => {
-    return ld.map((i, idx) => <li key={idx}>{i}</li>);
+    return ld.map((i, idx) => <li onClick={handleClick.bind(idx)} key={idx}>{i}</li>);
   };
+
+  function handleSpan () {
+    console.log('span')
+  }
+
+  function adhoc(idx) {
+    console.log('adhoc', idx)
+  }
 
   return (
     <div style={{ margin: "10px" }}>
@@ -41,8 +52,11 @@ export default function FunctionalComponent(props) {
         <input value={searchStr} onChange={searchStrChanged} />
       </div>
       <div>
-        <span>list: </span>
+        <span onClick={handleSpan}>list: </span>
         <ul>{renderList()}</ul>
+        <ul>
+          {[1,2,5,8].map((i, idx) => (<li key={idx} onClick={adhoc.bind(null, idx)}>{i}</li>))}
+        </ul>
       </div>
     </div>
   );
