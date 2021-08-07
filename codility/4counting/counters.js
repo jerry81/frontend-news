@@ -52,33 +52,56 @@ N and M are integers within the range [1..100,000];
 each element of array A is an integer within the range [1..N + 1].
 */
 
-function solution(N, A) {
+function solutionG1(N, A) {
   let max = 0;
   let counts = [];
-  let base = 0
+  let base = 0;
   for (let i = 0; i < N; ++i) {
     counts[i] = 0;
   }
-  let init = [...counts]
+  let init = [...counts];
   for (let j = 0; j < A.length; ++j) {
     let cur = A[j];
     if (cur == N + 1) {
-      base += max
-      max = 0
-      counts = [...init]
+      base += max;
+      max = 0;
+      counts = [...init];
     } else {
       let newCount = ++counts[cur - 1];
       if (newCount > max) {
-          max = newCount
+        max = newCount;
       }
     }
   }
-  return counts.map(x=>x+base)
+  return counts.map(x => x + base);
+}
+
+function solution(N, A) {
+  let max = 0;
+  let counts = [];
+  let base = 0;
+  for (let i = 0; i < N; ++i) {
+    counts[i] = 0;
+  }
+  for (let j = 0; j < A.length; ++j) {
+    let cur = A[j];
+    if (cur == N + 1) {
+      base = max;
+    } else {
+      let curCount = counts[cur - 1];
+      let newCount = curCount >= base ? curCount + 1 : base + 1;
+      counts[cur - 1] = newCount;
+      if (newCount > max) {
+        max = newCount;
+      }
+    }
+  }
+  return counts.map(x=>Math.max(x,base));
 }
 
 /* Example test:   (5, [3, 4, 4, 6, 1, 4, 4])
   expect [3, 2, 2, 4, 2],
 */
 
-console.log('sol is ', solution (5, [3, 4, 4, 6, 1, 4, 4]))
-console.log('sol2 is ', solution (5, [3, 4, 4, 6, 1, 6, 4]))
+console.log("sol is ", solution(5, [3, 4, 4, 6, 1, 4, 4]));
+console.log("sol2 is ", solution(5, [3, 4, 4, 6, 1, 6, 4]));
