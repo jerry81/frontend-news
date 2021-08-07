@@ -63,13 +63,13 @@ function solution(N, A) {
   for (let j = 0; j < A.length; ++j) {
     let cur = A[j];
     if (cur == N + 1) {
-      base = max
+      base += max
       max = 0
       counts = [...init]
     } else {
       let newCount = ++counts[cur - 1];
       if (newCount > max) {
-          max = newCount + base
+          max = newCount
       }
     }
   }
@@ -81,3 +81,4 @@ function solution(N, A) {
 */
 
 console.log('sol is ', solution (5, [3, 4, 4, 6, 1, 4, 4]))
+console.log('sol2 is ', solution (5, [3, 4, 4, 6, 1, 6, 4]))
