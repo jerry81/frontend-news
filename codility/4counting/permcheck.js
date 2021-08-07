@@ -76,13 +76,17 @@ function solution(A) {
     // write your code in JavaScript (Node.js 8.9.4)
     const m = max(A)
     let counted = []
-    if (m != A.length) return 0
+    if (m != A.length) { 
+        return 0
+    }
     for (let i = 0; i < m; i++) {
       counted[i] = 0
     }
     for (let j = 0; j < A.length; ++j) {
         if (counted[A[j]-1] != 0) {
             return 0
+        } else {
+            ++counted[A[j]-1]
         }
     }
     return 1
