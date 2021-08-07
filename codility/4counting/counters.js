@@ -68,7 +68,7 @@ function solution(N, A) {
     } else {
       let newCount = ++counts[cur - 1];
       if (newCount > max) {
-          max = newCount
+          max = newCount + base
       }
     }
   }
