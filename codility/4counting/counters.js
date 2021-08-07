@@ -64,6 +64,7 @@ function solution(N, A) {
     let cur = A[j];
     if (cur == N + 1) {
       base = max
+      max = 0
       counts = [...init]
     } else {
       let newCount = ++counts[cur - 1];
