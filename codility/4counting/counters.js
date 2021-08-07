@@ -55,15 +55,16 @@ each element of array A is an integer within the range [1..N + 1].
 function solution(N, A) {
   let max = 0;
   let counts = [];
+  let base = 0
   for (let i = 0; i < N; ++i) {
     counts[i] = 0;
   }
+  let init = [...counts]
   for (let j = 0; j < A.length; ++j) {
     let cur = A[j];
     if (cur == N + 1) {
-      for (let k = 0; k < N; ++k) {
-        counts[k] = max;
-      }
+      base = max
+      counts = [...init]
     } else {
       let newCount = ++counts[cur - 1];
       if (newCount > max) {
@@ -71,7 +72,7 @@ function solution(N, A) {
       }
     }
   }
-  return counts
+  return counts.map(x=>x+base)
 }
 
 /* Example test:   (5, [3, 4, 4, 6, 1, 4, 4])
