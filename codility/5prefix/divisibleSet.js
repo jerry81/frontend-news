@@ -18,7 +18,7 @@ K is an integer within the range [1..2,000,000,000];
 A ≤ B.
 */
 
-function solution(A, B, K) {
+function solution1(A, B, K) {
     // write your code in JavaScript (Node.js 8.9.4)
     // loop between A and B, checking each for modulo K
 
@@ -45,8 +45,16 @@ function solution(A, B, K) {
     return count
 }
 
+function solution(A, B, K) { 
+    return Math.ceil((B - A) / K)
+}
+
 /*
 Example test:   [6, 11, 2] // expect 3 
+A = 11, B = 345, K = 17 // expect - 20
 */
 
+
 console.log('sol', solution(6, 11, 2))
+
+console.log('sol2', solution(11, 345, 17))
