@@ -45,16 +45,37 @@ function solution1(A, B, K) {
     return count
 }
 
-function solution(A, B, K) { 
+function solution2(A, B, K) { 
     return Math.ceil((B - A) / K)
 }
 
+function solution3(A,B,K) {
+    const offset = ((A % K == 0) || (B % K == 0)) ? 1 : 0
+    return Math.floor((B-A) / K) + offset
+}
+
+function solution(A,B,K) {
+    let f = A
+    while (f % K != 0) {
+        ++f
+    }
+
+    let offset = (f % K == 0) ? 1 : 0
+    return Math.floor(((B - f) / K)) + offset
+}
 /*
 Example test:   [6, 11, 2] // expect 3 
+12-6 / 2 = 3 
 A = 11, B = 345, K = 17 // expect - 20
+A = B in {0,1}, K = 11 expect 1 
+A = 10, B = 10, K in {5,7,20} expect 1 
 */
 
 
 console.log('sol', solution(6, 11, 2))
 
 console.log('sol2', solution(11, 345, 17))
+
+console.log('sol3', solution(0,1,11))
+
+console.log('sol4', solution(10,10,5))
