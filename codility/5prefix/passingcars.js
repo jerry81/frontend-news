@@ -56,7 +56,7 @@ function solution(A) {
       prefix[i] = { sum0: ++sum0, sum1 };
     }
   }
-  return passed < 100000 ? passed : -1
+  return passed <= 1000000000 ? passed : -1
 }
 
 /*
