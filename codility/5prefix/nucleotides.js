@@ -74,7 +74,7 @@ function solutionB(S, A, B) {
   // CAGCCTA  - 0,6  - 0,1 || 2,4 || 5,5 || 6
 }
 
-function solution(S, A, B) {
+function solutionB2(S, A, B) {
   let lookup = {
     A: 1,
     C: 2,
@@ -93,32 +93,32 @@ function solution(S, A, B) {
     inner: for (let j = start; j <= end; ++j) {
       // is j cached?
       for (let k = 0; k < mkeys.length; ++k) {
-        console.log('mkeys is ', mkeys[k])
-        console.log('j is ', j)
+        console.log("mkeys is ", mkeys[k]);
+        console.log("j is ", j);
         if (+mkeys[k] == j) {
           // find the maximum  that is < end
-          console.log('mVals is ', mvals)
-          console.log('k is ', k)
+          console.log("mVals is ", mvals);
+          console.log("k is ", k);
           let ends = mvals[k];
-          console.log('ends is ', ends)
+          console.log("ends is ", ends);
           let eKeys = Object.keys(ends);
           let eVals = Object.values(ends);
           let max = -1;
-          let maxV = -1
+          let maxV = -1;
           for (let l = 0; l < eKeys.length; ++l) {
             let eKey = eKeys[l];
             if (+eKey < end && eKey > max) {
               max = l;
-              maxV = +eKey
+              maxV = +eKey;
             }
           }
           if (max > -1) {
             console.log("memo used");
-            console.log('max is ', max)
-            console.log('eVals is ', eVals)
+            console.log("max is ", max);
+            console.log("eVals is ", eVals);
             min = eVals[max];
             j = maxV;
-            continue inner
+            continue inner;
           }
         }
       }
@@ -141,8 +141,65 @@ function solution(S, A, B) {
   // CAGCCTA  - 0,6  - 0,1 || 2,4 || 5,5 || 6
 }
 
+function solution(S, A, B) {
+  let memo = {
+    A: [],
+    C: [],
+    G: []
+  };
+  // create lookups for each letter
+  for (let i = 0; i < S.length; ++i) {
+    let char = S[i];
+    switch (char) {
+      case "A": {
+        memo.A.push(i);
+        break;
+      }
+      case "C": {
+        memo.C.push(i);
+        break;
+      }
+      case "G": {
+        memo.G.push(i);
+        break;
+      }
+    }
+  }
+  let results = [];
+  inner: for (let j = 0; j < A.length; ++j) {
+    let start = A[j];
+    let end = B[j];
+    let AA = memo["A"];
+    for (let k = 0; k < AA.length; ++k) {
+      let curA = AA[k];
+      if (curA >= start && curA <= end) {
+        results.push(1);
+        continue inner;
+      }
+    }
+    let C = memo["C"];
+    for (let k = 0; k < C.length; ++k) {
+      let curC = C[k];
+      if (curC >= start && curC <= end) {
+        results.push(2);
+        continue inner;
+      }
+    }
+    let G = memo["G"];
+    for (let k = 0; k < G.length; ++k) {
+      let curG = G[k];
+      if (curG >= start && curG <= end) {
+        results.push(3);
+        continue inner;
+      }
+    }
+    results.push(4);
+  }
+  return results
+}
+
 console.log("sol", solution("CAGCCTA", [2, 5, 0], [4, 5, 6])); // expect 2, 4, 1
-console.log('sol2', solution('GGGGGGGGGGGGGGGGGGGC', [2,5, 0], [10, 15, 19]))
+console.log("sol2", solution("GGGGGGGGGGGGGGGGGGGC", [2, 5, 0], [10, 15, 19]));
 
 /*
     P[0] = 2    Q[0] = 4
