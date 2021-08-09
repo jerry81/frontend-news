@@ -50,67 +50,91 @@ string S consists only of upper-case English letters A, C, G, T.
 
 function solutionB(S, A, B) {
   let lookup = {
-      A: 1,
-      C: 2,
-      G: 3,
-      T: 4
-  }
-  let results = []
+    A: 1,
+    C: 2,
+    G: 3,
+    T: 4
+  };
+  let results = [];
   for (let i = 0; i < A.length; i++) {
-      let start = A[i]
-      let end = B[i]
-      let min = 4
-      for (let j = start; j <= end; j++) {
-          if (lookup[S[j]] < min) {
-              min = lookup[S[j]]
-              if (min == 1) break
-          }
+    let start = A[i];
+    let end = B[i];
+    let min = 4;
+    for (let j = start; j <= end; j++) {
+      if (lookup[S[j]] < min) {
+        min = lookup[S[j]];
+        if (min == 1) break;
       }
-      results[i] = min
+    }
+    results[i] = min;
   }
-  return results
+  return results;
   // GCC - 2,4
   // T  - 5,5
   // CAGCCTA  - 0,6  - 0,1 || 2,4 || 5,5 || 6
 }
 
 function solution(S, A, B) {
-    let lookup = {
-        A: 1,
-        C: 2,
-        G: 3,
-        T: 4
-    }
-    // 
-    let results = []
-    let memo = {
-
-    }
-    for (let i = 0; i < A.length; i++) {
-        let start = A[i]
-        let end = B[i]
-        let min = 4
-        for (let j = start; j <= end; j++) {
-            if (lookup[S[j]] < min) {
-                min = lookup[S[j]]
-                if (min == 1) break
+  let lookup = {
+    A: 1,
+    C: 2,
+    G: 3,
+    T: 4
+  };
+  //
+  let results = [];
+  let memo = {};
+  for (let i = 0; i < A.length; ++i) {
+    let start = A[i];
+    let end = B[i];
+    let min = 4;
+    let mkeys = Object.keys(memo);
+    let mvals = Object.values(memo);
+    inner: for (let j = start; j <= end; ++j) {
+      // is j cached?
+      for (let k = 0; k < mkeys.length; ++k) {
+        console.log('mkeys is ', mkeys[k])
+        console.log('j is ', j)
+        if (+mkeys[k] == j) {
+          // find the maximum  that is < end
+          let ends = mvals[mkeys[k]];
+          let eKeys = Object.keys(ends);
+          let eVals = Object.values(ends);
+          let max = -1;
+          for (let l = 0; l < eKeys.length; ++l) {
+            let eKey = eKeys[l];
+            if (+eKey < end && eKey > max) {
+              max = eKey;
             }
+          }
+          if (max > -1) {
+            console.log("memo used");
+            min = eVals[max];
+            j = max;
+            continue inner
+          }
         }
-        results[i] = min
-        if (end - start < 2) continue
-        if (!memo[start]) {
-            memo[start] = {}
-        }
-        memo[start][end] = min
+      }
+      if (lookup[S[j]] < min) {
+        min = lookup[S[j]];
+        if (min == 1) break;
+      }
     }
-    console.log('memo is ', memo)
-    return results
-    // GCC - 2,4
-    // T  - 5,5
-    // CAGCCTA  - 0,6  - 0,1 || 2,4 || 5,5 || 6
+    results[i] = min;
+    if (end - start < 2) continue;
+    if (!memo[start]) {
+      memo[start] = {};
+    }
+    memo[start][end] = min;
   }
+  console.log("memo is ", memo);
+  return results;
+  // GCC - 2,4
+  // T  - 5,5
+  // CAGCCTA  - 0,6  - 0,1 || 2,4 || 5,5 || 6
+}
 
-console.log('sol', solution('CAGCCTA', [2,5,0], [4,5,6])) // expect 2, 4, 1
+console.log("sol", solution("CAGCCTA", [2, 5, 0], [4, 5, 6])); // expect 2, 4, 1
 
 /*
     P[0] = 2    Q[0] = 4
