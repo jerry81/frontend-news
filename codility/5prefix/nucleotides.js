@@ -97,20 +97,27 @@ function solution(S, A, B) {
         console.log('j is ', j)
         if (+mkeys[k] == j) {
           // find the maximum  that is < end
-          let ends = mvals[mkeys[k]];
+          console.log('mVals is ', mvals)
+          console.log('k is ', k)
+          let ends = mvals[k];
+          console.log('ends is ', ends)
           let eKeys = Object.keys(ends);
           let eVals = Object.values(ends);
           let max = -1;
+          let maxV = -1
           for (let l = 0; l < eKeys.length; ++l) {
             let eKey = eKeys[l];
             if (+eKey < end && eKey > max) {
-              max = eKey;
+              max = l;
+              maxV = +eKey
             }
           }
           if (max > -1) {
             console.log("memo used");
+            console.log('max is ', max)
+            console.log('eVals is ', eVals)
             min = eVals[max];
-            j = max;
+            j = maxV;
             continue inner
           }
         }
@@ -135,6 +142,7 @@ function solution(S, A, B) {
 }
 
 console.log("sol", solution("CAGCCTA", [2, 5, 0], [4, 5, 6])); // expect 2, 4, 1
+console.log('sol2', solution('GGGGGGGGGGGGGGGGGGGC', [2,5, 0], [10, 15, 19]))
 
 /*
     P[0] = 2    Q[0] = 4
