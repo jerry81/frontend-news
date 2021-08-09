@@ -53,7 +53,20 @@ function solution(A) {
         }
     }
   }
-  return sums
+  // get min avg
+  let minAvg = Number.MAX_SAFE_INTEGER
+  let minIdx = -1
+  for (let k = 0; k < sums.length; k++) {
+    let cur = sums[k]
+    for (let l = 0; l < cur.length; l++) {
+        let avg = cur[l] / (l + 2)
+        if (avg < minAvg) {
+            minAvg = avg 
+            minIdx = k
+        }
+    }
+  }
+  return minIdx
 }
 
 console.log(solution([4, 2, 2, 5, 1, 5, 8]));
