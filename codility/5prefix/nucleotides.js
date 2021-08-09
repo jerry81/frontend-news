@@ -48,7 +48,7 @@ P[K] ≤ Q[K], where 0 ≤ K < M;
 string S consists only of upper-case English letters A, C, G, T.
 */
 
-function solution(S, A, B) {
+function solutionB(S, A, B) {
   let lookup = {
       A: 1,
       C: 2,
@@ -73,6 +73,42 @@ function solution(S, A, B) {
   // T  - 5,5
   // CAGCCTA  - 0,6  - 0,1 || 2,4 || 5,5 || 6
 }
+
+function solution(S, A, B) {
+    let lookup = {
+        A: 1,
+        C: 2,
+        G: 3,
+        T: 4
+    }
+    // 
+    let results = []
+    let memo = {
+
+    }
+    for (let i = 0; i < A.length; i++) {
+        let start = A[i]
+        let end = B[i]
+        let min = 4
+        for (let j = start; j <= end; j++) {
+            if (lookup[S[j]] < min) {
+                min = lookup[S[j]]
+                if (min == 1) break
+            }
+        }
+        results[i] = min
+        if (end - start < 2) continue
+        if (!memo[start]) {
+            memo[start] = {}
+        }
+        memo[start][end] = min
+    }
+    console.log('memo is ', memo)
+    return results
+    // GCC - 2,4
+    // T  - 5,5
+    // CAGCCTA  - 0,6  - 0,1 || 2,4 || 5,5 || 6
+  }
 
 console.log('sol', solution('CAGCCTA', [2,5,0], [4,5,6])) // expect 2, 4, 1
 
