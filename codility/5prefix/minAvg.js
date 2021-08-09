@@ -40,33 +40,64 @@ N is an integer within the range [2..100,000];
 each element of array A is an integer within the range [−10,000..10,000].
 */
 
-function solution(A) {
+function solutionB(A) {
   let sums = [];
   for (let i = 0; i < A.length - 1; ++i) {
     sums[i] = [];
   }
   for (let j = A.length - 2; j >= 0; --j) {
     sums[j].push(A[j] + A[j + 1]);
-    if (sums[j+1]) {
-        for (let k = 0; k < sums[j+1].length; ++k) {
-            sums[j].push(A[j] + sums[j+1][k])
-        }
+    if (sums[j + 1]) {
+      for (let k = 0; k < sums[j + 1].length; ++k) {
+        sums[j].push(A[j] + sums[j + 1][k]);
+      }
     }
   }
   // get min avg
-  let minAvg = Number.MAX_SAFE_INTEGER
-  let minIdx = -1
+  let minAvg = Number.MAX_SAFE_INTEGER;
+  let minIdx = -1;
   for (let k = 0; k < sums.length; k++) {
-    let cur = sums[k]
+    let cur = sums[k];
     for (let l = 0; l < cur.length; l++) {
-        let avg = cur[l] / (l + 2)
-        if (avg < minAvg) {
-            minAvg = avg 
-            minIdx = k
-        }
+      let avg = cur[l] / (l + 2);
+      if (avg < minAvg) {
+        minAvg = avg;
+        minIdx = k;
+      }
     }
   }
-  return minIdx
+  return minIdx;
+}
+
+function solution(A) {
+  let sums = [];
+  let minAvg = Number.MAX_SAFE_INTEGER;
+  let minIdx = -1;
+  for (let i = 0; i < A.length - 1; ++i) {
+    sums[i] = [];
+  }
+  for (let j = A.length - 2; j >= 0; --j) {
+    let sum = A[j] + A[j + 1];
+    sums[j].push(sum);
+    let avg = sum / 2;
+    if (avg < minAvg) {
+      minIdx = j;
+      minAvg = avg;
+    }
+    if (sums[j + 1]) {
+      for (let k = 0; k < sums[j + 1].length; ++k) {
+        let sum2 = A[j] + sums[j + 1][k];
+        let avg2 = sum2 / (3 + k);
+        if (avg2 < minAvg) {
+          minIdx = j;
+          minAvg = avg2;
+        }
+        sums[j].push(sum2);
+      }
+    }
+  }
+  return minIdx;
+  // get min avg
 }
 
 console.log(solution([4, 2, 2, 5, 1, 5, 8]));
