@@ -101,7 +101,7 @@ function solutionB2(A) {
 }
 
 
-function solutionB3(A) {
+function solution(A) {
     let minIdx = -1
     let minSum = Number.MAX_SAFE_INTEGER
     let minDen = 1
@@ -119,6 +119,19 @@ function solutionB3(A) {
         continue
       }
 
+      // three item check
+
+      let sum2 = A[j] + A[j + 1] + A[j+2]
+      let avg2 = sum2 / 3
+
+      if (avg2 <= minAvg) {
+          minDen = 3
+          minAvg = avg2
+          minSum = sum2
+          minIdx = j
+          continue
+      }
+
       // case, extend the minimal chain 
       let potentialSum = minSum + A[j]
       let potentialDen = minDen + 1
@@ -130,13 +143,13 @@ function solutionB3(A) {
           continue
       }
 
-
-      if (potentialAvg < avg && minIdx == (j+1)) {
+      console.log('pot, avg, minAvg', potentialAvg, avg, minAvg)
+      if (potentialAvg <= avg && minIdx == (j+1)) {
         minAvg = potentialAvg;
         minDen = potentialDen
         minSum = potentialSum
         minIdx = j;
-      } else if (avg < minAvg) {
+      } else if (avg <= minAvg) {
         minAvg = avg;
         minDen = 2
         minSum = sum
@@ -147,7 +160,7 @@ function solutionB3(A) {
     // get min avg
   }
 
-  function solution(A) {
+  function solutionB3(A) {
     let sums = [];
     let minAvg = Number.MAX_SAFE_INTEGER
     let minIdx = -1;
