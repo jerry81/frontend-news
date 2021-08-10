@@ -112,6 +112,13 @@ function solution(A) {
       if (avg > minAvg) {
           continue
       }
+      if (minIdx < 0) {
+        minAvg = avg;
+        minDen = 2
+        minSum = sum
+        minIdx = j
+        continue
+      }
       minIdx = j;
       let potentialSum = minSum + A[j]
       let potentialDen = minDen + 1
