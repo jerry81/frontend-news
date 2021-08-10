@@ -69,7 +69,7 @@ function solutionB(A) {
   return minIdx;
 }
 
-function solution(A) {
+function solutionB2(A) {
   let sums = [];
   let minAvg = Number.MAX_SAFE_INTEGER;
   let minIdx = -1;
@@ -99,5 +99,37 @@ function solution(A) {
   return minIdx;
   // get min avg
 }
+
+
+function solution(A) {
+    let minIdx = -1
+    let minSum = Number.MAX_SAFE_INTEGER
+    let minDen = 1
+    let minAvg = Number.MAX_SAFE_INTEGER
+    for (let j = A.length - 2; j >= 0; --j) {
+      let sum = A[j] + A[j + 1];
+      let avg = sum / 2;
+      if (avg > minAvg) {
+          continue
+      }
+      minIdx = j;
+      let potentialSum = minSum + A[j]
+      let potentialDen = minDen + 1
+      let potentialAvg = potentialSum / potentialDen
+      if (potentialAvg < avg) {
+        minAvg = potentialAvg;
+        minDen = potentialDen
+        minSum = potentialSum
+      } else {
+        minAvg = avg;
+        minDen = 2
+        minSum = sum
+      }
+      // check A[j} added to the current min chain 
+
+    }
+    return minIdx;
+    // get min avg
+  }
 
 console.log(solution([4, 2, 2, 5, 1, 5, 8]));
