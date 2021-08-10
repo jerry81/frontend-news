@@ -123,13 +123,13 @@ function solution(A) {
 
       let sum2 = A[j] + A[j + 1] + A[j+2]
       let avg2 = sum2 / 3
+      let den = 2
+      let tsum = sum 
 
-      if (avg2 <= minAvg) {
-          minDen = 3
-          minAvg = avg2
-          minSum = sum2
-          minIdx = j
-          continue
+      if (avg2 <= avg) {
+        avg = avg2
+        den = 3
+        tsum = sum2    
       }
 
       // case, extend the minimal chain 
@@ -143,7 +143,6 @@ function solution(A) {
           continue
       }
 
-      console.log('pot, avg, minAvg', potentialAvg, avg, minAvg)
       if (potentialAvg <= avg && minIdx == (j+1)) {
         minAvg = potentialAvg;
         minDen = potentialDen
@@ -151,8 +150,8 @@ function solution(A) {
         minIdx = j;
       } else if (avg <= minAvg) {
         minAvg = avg;
-        minDen = 2
-        minSum = sum
+        minDen = den
+        minSum = tsum
         minIdx = j;
       }
     }
