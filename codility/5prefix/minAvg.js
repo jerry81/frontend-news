@@ -122,22 +122,25 @@ function solution(A) {
       if (avg > minAvg && potentialAvg > minAvg) {
           continue
       }
-      minIdx = j;
-      if (potentialAvg < avg) {
+      if (potentialAvg < avg && minIdx == (j+1)) {
         minAvg = potentialAvg;
         minDen = potentialDen
         minSum = potentialSum
-      } else {
+        minIdx = j;
+      } else if (avg < minAvg) {
         minAvg = avg;
         minDen = 2
         minSum = sum
+        minIdx = j;
       }
-      // check A[j} added to the current min chain 
-
     }
     return minIdx;
     // get min avg
   }
 
 console.log(solution([4, 2, 2, 5, 1, 5, 8]));
-console.log('test2 ', solution([-3, -5, -8, -4, -10]))
+console.log('test2 expect 2', solution([-3, -5, -8, -4, -10]))
+
+console.log('test3 expect 5', solution([ 10, 10, -1, 2, 4, -1, 2, -1 ]))
+
+console.log('test 4 expect ')
