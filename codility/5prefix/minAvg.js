@@ -109,9 +109,6 @@ function solution(A) {
     for (let j = A.length - 2; j >= 0; --j) {
       let sum = A[j] + A[j + 1];
       let avg = sum / 2;
-      if (avg > minAvg) {
-          continue
-      }
       if (minIdx < 0) {
         minAvg = avg;
         minDen = 2
@@ -119,10 +116,13 @@ function solution(A) {
         minIdx = j
         continue
       }
-      minIdx = j;
       let potentialSum = minSum + A[j]
       let potentialDen = minDen + 1
       let potentialAvg = potentialSum / potentialDen
+      if (avg > minAvg && potentialAvg > minAvg) {
+          continue
+      }
+      minIdx = j;
       if (potentialAvg < avg) {
         minAvg = potentialAvg;
         minDen = potentialDen
@@ -140,3 +140,4 @@ function solution(A) {
   }
 
 console.log(solution([4, 2, 2, 5, 1, 5, 8]));
+console.log('test2 ', solution([-3, -5, -8, -4, -10]))
