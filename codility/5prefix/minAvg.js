@@ -101,7 +101,7 @@ function solutionB2(A) {
 }
 
 
-function solution(A) {
+function solutionB3(A) {
     let minIdx = -1
     let minSum = Number.MAX_SAFE_INTEGER
     let minDen = 1
@@ -109,6 +109,8 @@ function solution(A) {
     for (let j = A.length - 2; j >= 0; --j) {
       let sum = A[j] + A[j + 1];
       let avg = sum / 2;
+      // case - establish the base 
+
       if (minIdx < 0) {
         minAvg = avg;
         minDen = 2
@@ -116,12 +118,19 @@ function solution(A) {
         minIdx = j
         continue
       }
+
+      // case, extend the minimal chain 
       let potentialSum = minSum + A[j]
       let potentialDen = minDen + 1
       let potentialAvg = potentialSum / potentialDen
+
+      // both the chained current 2 items are larger than the min, skip to next item 
       if (avg > minAvg && potentialAvg > minAvg) {
+
           continue
       }
+
+
       if (potentialAvg < avg && minIdx == (j+1)) {
         minAvg = potentialAvg;
         minDen = potentialDen
@@ -138,9 +147,37 @@ function solution(A) {
     // get min avg
   }
 
+  function solution(A) {
+    let sums = [];
+    let minAvg = Number.MAX_SAFE_INTEGER
+    let minIdx = -1;
+    for (let i = 0; i < A.length - 1; ++i) {
+      sums[i] = [];
+    }
+    for (let j = A.length - 2; j >= 0; --j) {
+      sums[j].push(A[j] + A[j + 1]);
+      let avg = (A[j] + A[j + 1]) / 2
+      if (avg < minAvg) {
+          minAvg = avg 
+          minIdx= j
+      }
+      if (sums[j + 1]) {
+        for (let k = 0; k < sums[j + 1].length; ++k) {
+          sums[j].push(A[j] + sums[j + 1][k]);
+          let avg2 = (A[j] + sums[j + 1][k]) / (3 + k)
+          if (avg2 <= minAvg) {
+              minAvg = avg2
+              minIdx = j
+          }
+        }
+      }
+    }
+    return minIdx;
+  }
+
 console.log(solution([4, 2, 2, 5, 1, 5, 8]));
 console.log('test2 expect 2', solution([-3, -5, -8, -4, -10]))
 
 console.log('test3 expect 5', solution([ 10, 10, -1, 2, 4, -1, 2, -1 ]))
 
-console.log('test 4 expect ')
+console.log('test 4 expect 3', solution([ -3, -3, 10, -10, 10, -10, 10, -10, 10, -3, -3, 100, -11 ]))
