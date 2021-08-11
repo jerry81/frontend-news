@@ -52,7 +52,7 @@ while True
     sorted.push(...A)
   else if (B.length)
     sorted.push(...B)
-  else if (A[0] < B[0]) sorted.push[A.unshift()] else sorted.push(B.unshift())
+  else if (A[0] < B[0]) sorted.push[A.shift()] else sorted.push(B.shift())
 
 complexity n log n 
 
