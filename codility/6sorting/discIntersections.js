@@ -49,7 +49,6 @@ function solution(A) {
       max = saved.max;
     }
     for (let j = i + 1; j < A.length; ++j) {
-        console.log('coparing i, j', i, j)
       let min2, max2;
       if (!memo[j]) {
         let cur2 = A[j];
@@ -63,6 +62,8 @@ function solution(A) {
       }
       // compare 
       if ((min2 >= min && min2 <= max) || (max2 <= max && max2 >= min)) {
+          ++count
+      } else if ((min >= min2 && min <= max2) || (max <= max2 && max >= min2)) {
           ++count
       }
     }
