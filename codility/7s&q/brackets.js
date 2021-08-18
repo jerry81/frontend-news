@@ -23,41 +23,27 @@ string S consists only of the following characters: "(", "{", "[", "]", "}" and/
 function solution(S) {
   // write your code in JavaScript (Node.js 8.9.4)
   if (S.length == 0) return 1;
-  let stack = []
+  let s = [];
   for (let i in S) {
     let char = S[i];
-    switch (char) {
-      case "{": {
-        s.push("{");
-        break;
+    if (["(", "[", "{"].includes(char)) {
+      s.push(char);
+    } else {
+      if (s.length == 0) return 0;
+      const popped = s.pop();
+
+      if (char == ')') {
+        if (popped != '(') return 0;
       }
-      case "[": {
-        s2.push("[");
-        break;
+      if (char == '}') {
+        if (popped != '{') return 0;
       }
-      case "(": {
-        s3.push("(");
-        break;
+      if (char == ']') {
+        if (popped != '[') return 0;
       }
-      case "}": {
-        if (s1.length < 1) return 0;
-        s1.pop();
-        break;
-      }
-      case "]": {
-        if (s2.length < 1) return 0;
-        s2.pop();
-        break;
-      }
-      case ")": {
-        if (s3.length < 1) return 0;
-        s3.pop();
-        break;
-      }
-      default: break
     }
   }
-  console.log('s1,s2,s3', s1,s2,s3)
+  return s.length == 0 ? 1 : 0
 }
 
 console.log("expect 1", solution("{[()()]}"));
