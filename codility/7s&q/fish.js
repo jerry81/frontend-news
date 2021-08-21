@@ -49,17 +49,14 @@ the elements of A are all distinct.
 function solution(A, B) {
   let up = []
   let down = []
-  let curD = null
   for (let i in A) {
       let v = A[i]
       let d = B[i]
         if (!!d) {
           // downstream 
-          console.log('down')
           down.push(v)
         } else {
           // upstream 
-          console.log('up')
           let eaten = false
           for (let j = down.length-1; j > -1; j--) {
               const curDsFish = down[j]
@@ -73,9 +70,7 @@ function solution(A, B) {
             up.push(v)
           }
         }
-        console.log('up and down are now ', up, down)
       }
-      console.log('up and down are ', up, down)
       return up.length + down.length
   }
 
