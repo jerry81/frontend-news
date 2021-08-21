@@ -64,6 +64,7 @@ function solution(A, B) {
                   down.pop()
               } else {
                 eaten = true
+                break
               }
           }
           if (!eaten) {
