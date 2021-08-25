@@ -32,14 +32,14 @@ def solution(s)
           return 0
         else 
           stack.pop
-        end 
-      end 
-      if c == '('
+        end  
+      elsif c == '('
         stack.push 3
       else 
         return 0 
       end
     }
+
     if stack.empty?
         return 1
     else
