@@ -22,9 +22,29 @@ string S consists only of the characters "(" and/or ")".
 
 def solution(s)
     # write your code in Ruby 2.2
+    stack = []
     if s.empty?
         return 1
     end
+    s.split('').each { |c|
+      if c == ')'
+        if stack.empty?
+          return 0
+        else 
+          stack.pop
+        end 
+      end 
+      if c == '('
+        stack.push 3
+      else 
+        return 0 
+      end
+    }
+    if stack.empty?
+        return 1
+    else
+        return 0
+    end 
   end
   
 sol1 = solution('(()(())())')
