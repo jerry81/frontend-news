@@ -24,8 +24,37 @@ N is an integer within the range [1..100,000];
 each element of array H is an integer within the range [1..1,000,000,000].
 =end
 
-def solution 
-    puts 'solution here'
+def solution(h)
+    stack = []
+    blockCount = 0
+    h.each_with_index{ |item, idx |=
+      if stack.empty? 
+        stack.push(item)
+        blockCount += 1=
+      else 
+        last = stack[stack.size - 1]=
+        if item > last
+          stack.push(item)
+          blockCount +=1 =
+        elsif item < last
+          while item < last and stack.size > 0
+            last = stack.pop()
+          end 
+          if last == item
+            stack.push(last)
+            next
+          elsif last < item 
+            stack.push(last)
+            blockCount += 1
+            next 
+          else 
+            stack.push(item)
+            blockCount +=1
+          end
+        end 
+      end 
+    }
+    return blockCount
 end
 
-solution
+puts "expect 7  #{solution([8,8,5,7,9,8,7,4,8])}"
