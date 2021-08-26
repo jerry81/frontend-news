@@ -27,15 +27,15 @@ each element of array H is an integer within the range [1..1,000,000,000].
 def solution(h)
     stack = []
     blockCount = 0
-    h.each_with_index{ |item, idx |=
+    h.each_with_index{ |item, idx |
       if stack.empty? 
         stack.push(item)
-        blockCount += 1=
+        blockCount += 1
       else 
-        last = stack[stack.size - 1]=
+        last = stack[stack.size - 1]
         if item > last
           stack.push(item)
-          blockCount +=1 =
+          blockCount +=1
         elsif item < last
           while item < last and stack.size > 0
             last = stack.pop()
