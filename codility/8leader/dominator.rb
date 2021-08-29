@@ -54,7 +54,7 @@ def solution(a)
           idx = index
         end
       }
-    return idx
+    return count > (a.size / 2) ? idx : -1
 end
 
 test1 = [3,4,3,2,3,-1,3,3]
